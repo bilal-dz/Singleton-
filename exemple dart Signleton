@@ -1,0 +1,33 @@
+
+void main() {
+ 
+ Myclass a=Myclass();
+  a.modOk('heloo');
+  print(a.ok); 
+  
+ Myclass b=Myclass();
+  print(identical(a,b));
+    b.modOk('man');
+     print(a.ok);
+     print(b.ok);
+}
+class Myclass {
+  String _ok;
+  //getfb use namedconstractor our éviter boucle infini si elle utilise default constractor insted
+   static final Myclass getfb=Myclass.take();
+  
+ factory Myclass(){
+    return getfb;
+  }
+  Myclass.take(){
+    //on été obliger de crée Named constractor 
+    print('instance taked');
+    
+  }
+  String get ok=>_ok;
+  
+  modOk(String p){
+    _ok=p;
+  }
+  
+}
